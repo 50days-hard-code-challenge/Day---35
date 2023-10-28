@@ -1,0 +1,21 @@
+Gclass Solution {
+public:
+    vector<int> findIndices(vector<int>& nums, int id, int vd) {
+        int n = nums.size();
+        set<pair<int, int>> st;
+        for(int i = id; i < n; i++){
+            st.insert({nums[i - id], i - id});
+            auto it = st.lower_bound({nums[i] + vd, -1});
+            if(it != st.end()){
+                return {i, it->second};
+            }
+            auto it1 = st.upper_bound({nums[i] - vd, INT_MAX});
+            if(it1 != st.begin()){
+                it1 = prev(it1);
+                // cout << it1->first << '\n';
+                return {i, it1->second};
+            }
+        }
+        return {-1, -1};
+    }
+};
