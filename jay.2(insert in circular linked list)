@@ -1,0 +1,26 @@
+void insertNode(Node* &tail, int element, int d) {
+    
+
+     
+    if(tail == NULL) {
+        Node* newNode = new Node(d);
+        tail = newNode;
+        newNode -> next = newNode;
+    }
+    else{
+        
+
+        Node* curr = tail;
+
+        while(curr->data != element) {
+            curr = curr -> next;
+        }
+        
+         
+        Node* temp = new Node(d);
+        temp -> next = curr -> next;
+        curr -> next = temp;
+
+    }
+
+}    
